@@ -1,0 +1,39 @@
+.container {
+    background-color: #333333;
+    display: flex;
+    flex-wrap: wrap; 
+    height: 300px;   
+    justify-items: center; 
+    padding: 3px 0px 3px 3px
+}
+
+.mainscreen{
+    background-color: #ffffff;
+    font-size: 2rem;
+    margin: 0px 3px 0px 0px;
+    flex: 1 1 100%;
+}
+
+.numberPad {
+    display: flex;
+    justify-content: left;
+    flex-wrap: wrap;
+    flex: 0 1 100%;
+}
+
+.button {
+    display: flex;
+    flex: 1 1 20%;
+    margin: 3px 3px 0px 0px;
+    justify-content: center;
+    align-items: center;
+    outline-style: none;
+}
+
+.operand {
+    background-color: aquamarine;
+}
+
+.number {
+    background-color: #aaaaaa;
+}
