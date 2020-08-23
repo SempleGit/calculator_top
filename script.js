@@ -80,6 +80,7 @@ function parseInput(e) {
     updateMainScreen(updateValue);
 }
 
+
 function clearValues() {
     x = 0;
     y = 0;
