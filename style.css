@@ -1,33 +1,52 @@
 .container {
     background-color: #333333;
     display: flex;
-    flex-wrap: wrap; 
-    height: 300px;   
+    flex-wrap: wrap;    
     justify-items: center; 
-    padding: 3px 0px 3px 3px
+    padding: 3px 0px 3px 3px;
+    width: 300px;
 }
 
 .mainscreen{
+    display: flex;
     background-color: #ffffff;
     font-size: 2rem;
     margin: 0px 3px 0px 0px;
     flex: 1 1 100%;
+    justify-content: flex-end;
+    
+}
+
+.maintext {
+    padding: 5px;
+    font-size: 3rem;
+
+}
+
+.operandPad {
+    display: flex;
+    justify-self: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex: 0 0 100%;
 }
 
 .numberPad {
     display: flex;
-    justify-content: left;
+    justify-self: center;
+    justify-content: space-evenly;
     flex-wrap: wrap;
-    flex: 0 1 100%;
+    flex: 0 0 100%;
 }
 
 .button {
     display: flex;
-    flex: 1 1 20%;
+    flex: 0 0 32%;
     margin: 3px 3px 0px 0px;
     justify-content: center;
     align-items: center;
     outline-style: none;
+    font-size: 1.5rem;
 }
 
 .operand {

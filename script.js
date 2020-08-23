@@ -1,20 +1,106 @@
 const numberButtons = document.querySelectorAll(".number");
+const operandButtons = document.querySelectorAll(".operand");
+const mainDisplay = document.querySelector(".maintext");
 let x;
 let y;
+let operator;
+let runningTotal;
+let activeInput = true;
 
-numberButtons.forEach(b => addEventListener("click", assignValue));
+numberButtons.forEach(b => addEventListener("click", parseInput));
+operandButtons.forEach(b => addEventListener("click", parseOperation));
 let test;
 
 
-function assignValue(e) {
-    test = e.target;
-    if (!x) {
-        x = parseInt(e.target.getAttribute(["data-value"]));
-    } else {
-        y = parseInt(e.target.getAttribute(["data-value"]));
+function parseOperation(e) {
+    if (!e.target.getAttribute("class").includes("operand")) {
+        return;
     }
-        
+
+    let dataValue = e.target.getAttribute(["data-value"]);
+    switch (dataValue) {
+        case "add":
+            storeValue();
+            operator = dataValue;
+            updateMainScreen("+");
+            break;
+        case "subtract":
+            storeValue();
+            operator = dataValue;
+            updateMainScreen("-");
+            break;
+        case "divide":
+            storeValue();
+            operator = dataValue;
+            updateMainScreen("/");
+            break;
+        case "multiply":
+            storeValue();
+            operator = dataValue;
+            updateMainScreen("*");
+            break;
+        case "equal":
+            storeValue();
+            updateMainScreen(runningTotal);
+            clearValues();
+            break;
+        case "clear":
+            clearValues();
+            updateMainScreen(0);
+            break;
+    }   
+}    
+
+function parseInput(e) {
+    if (!e.target.getAttribute("class").includes("number ")) {
+        return;
+    }
+    
+    console.log("check1");
+    if (!activeInput) {
+        mainDisplay.textContent = 0;
+        activeInput = true;
+    }
+
+    let dataValue = e.target.getAttribute(["data-value"]);
+    let updateValue;
+
+    if (mainDisplay.textContent.match(/^[1-9]/g) && activeInput) {
+        updateValue = mainDisplay.textContent + dataValue;
+    } else {
+        updateValue = dataValue;
+    }
+    updateMainScreen(updateValue);
 }
+
+function clearValues() {
+    x = 0;
+    y = 0;
+    operator = "";
+    activeInput = false;
+}
+
+function finalResult() {
+    
+}
+
+
+function storeValue() {
+   if (!x) {
+       x = parseFloat(mainDisplay.textContent);
+       runningTotal = x;
+   } else {
+       y = parseFloat(mainDisplay.textContent);
+       runningTotal = operate(operator, runningTotal, y);
+       runningTotal = Math.round(runningTotal * 10) / 10;
+   }
+   console.log(`running: ${runningTotal}`)
+}
+
+function updateMainScreen(updateValue) {
+    mainDisplay.textContent = updateValue;
+}
+
 
 function operate(operator, x, y) {
     switch (operator) {
@@ -29,8 +115,7 @@ function operate(operator, x, y) {
             break;
         case "divide":
             return divide(x, y);
-            break;
-        
+            break;        
     }
 }
 
@@ -47,5 +132,8 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
+    if (y === 0) {
+        return "Cannot divide by 0";
+    }
     return x / y;
 }
