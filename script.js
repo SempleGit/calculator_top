@@ -52,11 +52,11 @@ function parseOperation(e) {
 }    
 
 function parseInput(e) {
+    //checks if number button hit
     if (!e.target.getAttribute("class").includes("number ")) {
         return;
     }
     
-    console.log("check1");
     if (!activeInput) {
         mainDisplay.textContent = 0;
         activeInput = true;
@@ -65,7 +65,14 @@ function parseInput(e) {
     let dataValue = e.target.getAttribute(["data-value"]);
     let updateValue;
 
-    if (mainDisplay.textContent.match(/^[1-9]/g) && activeInput) {
+    // already a period in the display, do nothing.
+    if (mainDisplay.textContent.includes(".") && dataValue === ".") {
+        return;
+    }
+
+    if (dataValue === 'backspace') {
+        updateValue = mainDisplay.textContent.length == 1 ? 0 : mainDisplay.textContent.substr(0, mainDisplay.textContent.length-1);
+    } else if (mainDisplay.textContent.match(/^[1-9.]/g) && activeInput) {
         updateValue = mainDisplay.textContent + dataValue;
     } else {
         updateValue = dataValue;
