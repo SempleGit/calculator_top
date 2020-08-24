@@ -39,6 +39,9 @@ function parseOperation(e) {
             operator = dataValue;
             updateMainScreen("*");
             break;
+        case "negation":
+            negateValue();
+            break;
         case "equal":
             storeValue();
             updateMainScreen(runningTotal);
@@ -57,6 +60,7 @@ function parseInput(e) {
         return;
     }
     
+
     if (!activeInput) {
         mainDisplay.textContent = 0;
         activeInput = true;
@@ -72,14 +76,20 @@ function parseInput(e) {
 
     if (dataValue === 'backspace') {
         updateValue = mainDisplay.textContent.length == 1 ? 0 : mainDisplay.textContent.substr(0, mainDisplay.textContent.length-1);
-    } else if (mainDisplay.textContent.match(/^[1-9.]/g) && activeInput) {
-        updateValue = mainDisplay.textContent + dataValue;
+    } else if (mainDisplay.textContent.match(/^[\-1-9.]/g) && activeInput) {
+        updateValue = mainDisplay.textContent.length < 11 ? mainDisplay.textContent + dataValue : mainDisplay.textContent;
     } else {
         updateValue = dataValue;
     }
     updateMainScreen(updateValue);
 }
 
+function negateValue() {
+    if (mainDisplay.textContent.match(/^[1-9]/g)) {
+        let updateValue = parseFloat(mainDisplay.textContent) * -1;
+        updateMainScreen(updateValue);
+    }
+}
 
 function clearValues() {
     x = 0;
@@ -102,7 +112,6 @@ function storeValue() {
        runningTotal = operate(operator, runningTotal, y);
        runningTotal = Math.round(runningTotal * 10) / 10;
    }
-   console.log(`running: ${runningTotal}`)
 }
 
 function updateMainScreen(updateValue) {
