@@ -85,7 +85,7 @@ function parseInput(e) {
 }
 
 function negateValue() {
-    if (mainDisplay.textContent.match(/^[1-9]/g)) {
+    if (mainDisplay.textContent.match(/^[\-1-9]/g)) {
         let updateValue = parseFloat(mainDisplay.textContent) * -1;
         updateMainScreen(updateValue);
     }
