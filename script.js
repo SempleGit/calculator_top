@@ -76,7 +76,7 @@ function parseInput(e) {
 
     if (dataValue === 'backspace') {
         updateValue = mainDisplay.textContent.length == 1 ? 0 : mainDisplay.textContent.substr(0, mainDisplay.textContent.length-1);
-    } else if (mainDisplay.textContent.match(/^[\-1-9.]/g) && activeInput) {
+    } else if (mainDisplay.textContent.match(/[1-9]/g) && activeInput) {
         updateValue = mainDisplay.textContent.length < 11 ? mainDisplay.textContent + dataValue : mainDisplay.textContent;
     } else {
         updateValue = dataValue;
