@@ -109,8 +109,14 @@ function storeValue() {
        runningTotal = x;
    } else {
        y = parseFloat(mainDisplay.textContent);
-       runningTotal = operate(operator, runningTotal, y);
-       runningTotal = Math.round(runningTotal * 10) / 10;
+        if (y !== 0 && operator !== '\'') {
+            runningTotal = operate(operator, runningTotal, y);
+            runningTotal = Math.round(runningTotal * 10) / 10;
+        } else {
+            runningTotal = 'div by 0';
+            updateMainScreen(runningTotal);
+            clearValues();
+        }
    }
 }
 
@@ -149,8 +155,5 @@ function multiply(x, y) {
 }
 
 function divide(x, y) {
-    if (y === 0) {
-        return "Cannot divide by 0";
-    }
     return x / y;
 }
