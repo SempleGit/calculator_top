@@ -1,5 +1,5 @@
 .container {
-    background-color: #333333;
+    background-color: #242038;
     display: flex;
     flex-wrap: wrap;    
     justify-items: center; 
@@ -9,7 +9,7 @@
 
 .mainscreen{
     display: flex;
-    background-color: #eedddd;
+    background-color: #CAC4CE;
     font-size: 2rem;
     margin: 0px 3px 3px 0px;
     flex: 1 1 100%;
@@ -51,9 +51,14 @@
 }
 
 .operand {
-    background-color: aquamarine;
+    background-color: #8D86C9;
 }
 
 .number {
-    background-color: #aaaaaa;
+    background-color: #CAC4CE;
+}
+
+.button.backspace {
+  background-color: #920707;
+  color: #CAC4CE;
 }

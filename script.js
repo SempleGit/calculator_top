@@ -9,8 +9,6 @@ let activeInput = true;
 
 numberButtons.forEach(b => addEventListener("click", parseInput));
 operandButtons.forEach(b => addEventListener("click", parseOperation));
-let test;
-
 
 function parseOperation(e) {
     if (!e.target.getAttribute("class").includes("operand")) {
